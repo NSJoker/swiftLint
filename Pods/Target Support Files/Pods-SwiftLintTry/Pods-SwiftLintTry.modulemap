@@ -1,0 +1,6 @@
+framework module Pods_SwiftLintTry {
+  umbrella header "Pods-SwiftLintTry-umbrella.h"
+
+  export *
+  module * { export * }
+}

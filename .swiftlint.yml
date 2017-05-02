@@ -1,0 +1,64 @@
+disabled_rules: # rule identifiers to exclude from running
+
+opt_in_rules: # some rules are only opt-in
+  - empty_count
+  # Find all the available rules by running:
+  # swiftlint rules
+include: # paths to include during linting. `--path` is ignored if present.
+
+excluded: # paths to ignore during linting. Takes precedence over `include`.
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+force_cast: error # implicitly
+force_try:
+  severity: warning # explicitly
+# rules that have both warning and error levels, can set just the warning level
+# implicitly
+line_length: 200
+# they can set both implicitly with an array
+type_body_length:
+  - 400 # warning
+  - 500 # error
+# or they can set both explicitly
+file_length:
+  warning: 800
+  error: 1000
+# naming rules can set warnings/errors for min_length and max_length
+# additionally they can set excluded names
+type_name:
+  min_length: 4 # only warning
+  max_length: # warning and error
+    warning: 20
+    error: 30
+  excluded: iPhone # excluded via string
+identifier_name:
+  min_length: # only min_length
+    error: 4 # only error
+  excluded: # excluded via string array
+    - id
+    - URL
+    - GlobalAPIKey
+custom_rules:
+  todo_warnings: #rule identifier
+    include: "*.swift" # regex that defines paths to include during linting. optional.
+    name: "Something to do here"
+    regex: "([t,T][o,O][d,D][o,O])"
+    match_kinds: # SyntaxKinds to match. optional.
+      - comment
+      - identifier
+    message: "You have some thing to do here!"
+    severity: warning
+  custom_warning:
+    include: "*.swift"
+    name: "Custom warning"
+    regex: "([w,W][a,A][r,R][n,N][i,I][n,N][g,G])"
+    match_kinds:
+      - comment
+    message: "You have a warning here!"
+    severity: warning
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
